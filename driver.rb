@@ -34,8 +34,8 @@ ac = 0
 
 
 
-data.each do |m|
-	puts "The item is: #{m.title}. The price is: $#{m.price}"
+data.each_with_index do |m, index|
+	puts "#{index} : #{m.title} : #{m.price}"
 	ac += m.price
 end
 
