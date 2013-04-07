@@ -1,7 +1,11 @@
 require_relative 'item'
 require_relative 'querycraigslist'
+require_relative 'dictcreator'
 
 data = Array.new
+filtered_titles = Array.new
+bad_titles = Array.new
+file_arr = Array.new
 
 puts "Where do you want to search?"
 location = gets.chomp
@@ -29,8 +33,13 @@ end
 
 ac = 0
 
-#if(exist?("#{search}dict.txt")
-	#remove bad results from data array
+if (File.exist?("#{search}dict.txt"))
+	File.open("#{search}dict.txt", 'r') do |file|
+		file.each_line do |line|
+			data.delete_if{|i| i.title.downcase.include? line.chomp}
+		end
+	end
+end
 
 
 
@@ -39,10 +48,25 @@ data.each_with_index do |m, index|
 	ac += m.price
 end
 
+puts "Do you want to filter the search results? (yes/no)"
 
-#do you want to filter results more?
-#if(yes)
-	#add bad results to dict and remove
-puts "The average price is: $#{ac/data.length}"
+if (gets.chomp != 'no')
+	puts "Type the line number followed by a space to filter search results"
+	bad_results = gets.chomp.split(' ').map{ |value| data[value.to_i]}
+	filtered_results = data - bad_results
+	filtered_results.each_index{|a| filtered_titles << filtered_results[a].title}
+	bad_results.each_index{|b| bad_titles << bad_results[b].title}
+	dict = DictCreator.new(filtered_titles, bad_titles, search)	
+	dict.create_dict
+	puts "The new results are:"
+	ac = 0
+	filter_results.each do |i| 
+		puts "#{i.title} : #{i.price}"
+		ac += i.price
+	end
+	puts "The average price is: $#{ac/filtered_results.length}"
 
+else
+	puts "The average price is: $#{ac/data.length}"
+end
 	
