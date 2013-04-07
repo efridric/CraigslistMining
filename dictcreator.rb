@@ -1,4 +1,7 @@
-require_relative 'item'
+#Author: Eric Fridrich
+#Description: This class creates a bad words dictionary based on the filtered rtitles and the bad titles
+#the bad words are determined by any word in the bad titles which are not in the filtered(good) titles
+#numbers are excluded.
 
 class DictCreator
 	def initialize(filtered, bad, search)

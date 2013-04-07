@@ -1,0 +1,4 @@
+Author: Eric Fridrich
+Purpose: is to query craigslist based on a user supplied search term and location.
+
+This program will allow the user to filter out unwanted results. It then creates a dictionary file based on the search term and if the same serach term is used it will automatically filter out similar results in the future. This allows the program to learn from the user and become better at filtering out results the more that it is used. Currently from these results the average price of the item serached for is returned.

@@ -1,3 +1,6 @@
+#Author: Eric Fridrich
+#Description: This class creates a QueryCraigsList object this object takes a location and a search term as an argument.
+#Uses location and search term to query Craigslist, the query variable equals the returned html from the query.
 require 'nokogiri'
 require 'open-uri'
 
