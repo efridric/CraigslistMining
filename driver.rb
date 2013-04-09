@@ -84,7 +84,7 @@ if (gets.chomp != 'no')
 	dict.create_dict
 	puts "The new results are:"
 	ac = 0
-	filter_results.each do |i| 
+	filtered_results.each do |i| 
 		puts "#{i.title} : #{i.price}"
 		ac += i.price
 	end
